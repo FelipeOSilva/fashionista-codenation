@@ -1,10 +1,12 @@
 import React from "react";
+import Header from "../../components/Header";
 
 const DetailProduct = () => {
   return (
-    <div>
+    <>
+      <Header />
       <h1>Ola produto</h1>
-    </div>
+    </>
   );
 };
 

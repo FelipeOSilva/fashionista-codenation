@@ -4,6 +4,7 @@ import withoutImage from "../../assets/unavaliable.png";
 
 import "./styles.css";
 import { Link } from "react-router-dom";
+import Header from "../../components/Header";
 
 interface Size {
   available: Boolean;
@@ -857,17 +858,7 @@ const Home = () => {
 
   return (
     <>
-      <header className="header">
-        <div className="container">
-          <a href="/" className="header__logo">
-            <span>FASHIONISTA</span>
-          </a>
-          <div className="header__actions">
-            <span>PQ</span>
-            <span>CP</span>
-          </div>
-        </div>
-      </header>
+      <Header />
       <main className="container">
         <ul className="products">
           {products.map((product, index) => (
