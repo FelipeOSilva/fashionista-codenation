@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import withoutImage from "../../assets/unavaliable.png";
 
 import "./styles.css";
+import { Link } from "react-router-dom";
 
 interface Size {
   available: Boolean;
@@ -869,32 +870,34 @@ const Home = () => {
       </header>
       <main className="container">
         <ul className="products">
-          {products.map((product) => (
-            <li className="product__box">
-              <figure className="product__image">
-                <img
-                  src={product.image || withoutImage}
-                  alt="Teste"
-                  width="100%"
-                />
-              </figure>
-              <div className="product__info">
-                <span className="product__name">{product.name}</span>
-                {product.on_sale ? (
-                  <div>
-                    <del className="product__price product__price--from">
-                      {product.regular_price}
-                    </del>
+          {products.map((product, index) => (
+            <li className="product__box" key={index}>
+              <Link to={`product/${index}`}>
+                <figure className="product__image">
+                  <img
+                    src={product.image || withoutImage}
+                    alt="Teste"
+                    width="100%"
+                  />
+                </figure>
+                <div className="product__info">
+                  <span className="product__name">{product.name}</span>
+                  {product.on_sale ? (
+                    <div>
+                      <del className="product__price product__price--from">
+                        {product.regular_price}
+                      </del>
+                      <span className="product__price product__price--to">
+                        {product.actual_price}
+                      </span>
+                    </div>
+                  ) : (
                     <span className="product__price product__price--to">
                       {product.actual_price}
                     </span>
-                  </div>
-                ) : (
-                  <span className="product__price product__price--to">
-                    {product.actual_price}
-                  </span>
-                )}
-              </div>
+                  )}
+                </div>
+              </Link>
             </li>
           ))}
         </ul>
