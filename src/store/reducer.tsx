@@ -15,17 +15,20 @@ export default (state = INITIAL_STATE, { type, payload }: Action) => {
       };
 
     case ADD_PRODUCT_CART:
-      return {
-        ...state,
-        productsCart: state.productsCart.map((product) => {
-          if (product.id === payload.id && product.size === payload.size) {
-            product.qtdCart++;
-            return product;
-          }
-          payload.qtdCart++;
-          return payload;
-        }),
-      };
+      let flag = false;
+      let products = state.productsCart.map((product) => {
+        if (product.id === payload.id && product.size === payload.size) {
+          flag = true;
+          product.qtdCart++;
+          return product;
+        }
+        return product;
+      });
+      if (flag) {
+        payload.qtdCart = 1;
+        return { ...state, productsCart: [...products, payload] };
+      }
+      return { ...state, productsCart: products };
 
     default:
       return state;
