@@ -17,6 +17,9 @@ export interface ProductItem {
   installments: string;
   image: string;
   sizes: Size[];
+  id: number;
+  qtdCart: number;
+  size?: string;
 }
 
 export interface Action {

@@ -19,6 +19,8 @@ const Home = () => {
     dispatch(
       setProducts([
         {
+          id: 0,
+          qtdCart: 0,
           name: "VESTIDO TRANSPASSE BOW",
           style: "20002605",
           code_color: "20002605_613",
@@ -60,6 +62,8 @@ const Home = () => {
           ],
         },
         {
+          id: 1,
+          qtdCart: 0,
           name: "REGATA ALCINHA FOLK",
           style: "20002570",
           code_color: "20002570_614",
