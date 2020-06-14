@@ -1,9 +1,9 @@
 import { SET_PRODUCTS } from "./actionTypes";
-import { Action } from "../types";
+import { Action, Store } from "../types";
 
-const INITIAL_STATE = {
+const INITIAL_STATE : Store = {
   products: [],
-  productsBag: [],
+  productsCart: [],
 };
 
 export default (state = INITIAL_STATE, { type, payload }: Action) => {
