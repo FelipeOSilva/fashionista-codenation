@@ -1,7 +1,7 @@
-import { SET_PRODUCTS } from "./actionTypes";
+import { SET_PRODUCTS, ADD_PRODUCT_CART } from "./actionTypes";
 import { Action, Store } from "../types";
 
-const INITIAL_STATE : Store = {
+const INITIAL_STATE: Store = {
   products: [],
   productsCart: [],
 };
@@ -12,6 +12,19 @@ export default (state = INITIAL_STATE, { type, payload }: Action) => {
       return {
         ...state,
         products: payload,
+      };
+
+    case ADD_PRODUCT_CART:
+      return {
+        ...state,
+        productsCart: state.productsCart.map((product) => {
+          if (product.id === payload.id && product.size === payload.size) {
+            product.qtdCart++;
+            return product;
+          }
+          payload.qtdCart++;
+          return payload;
+        }),
       };
 
     default:
