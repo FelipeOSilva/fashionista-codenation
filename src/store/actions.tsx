@@ -1,4 +1,8 @@
-import { SET_PRODUCTS, ADD_PRODUCT_CART } from "./actionTypes";
+import {
+  SET_PRODUCTS,
+  INCREMENT_PRODUCT_CART,
+  DECREMENT_PRODUCT_CART,
+} from "./actionTypes";
 import { ProductItem } from "../types";
 
 export const setProducts = (products: ProductItem[]) => {
@@ -9,10 +13,18 @@ export const setProducts = (products: ProductItem[]) => {
   };
 };
 
-export const addProductCart = (product: ProductItem) => {
-  console.log(ADD_PRODUCT_CART);
+export const incrementProductCart = (product: ProductItem) => {
+  console.log(INCREMENT_PRODUCT_CART);
   return {
-    type: ADD_PRODUCT_CART,
+    type: INCREMENT_PRODUCT_CART,
+    payload: product,
+  };
+};
+
+export const decrementProductCart = (product: ProductItem) => {
+  console.log(DECREMENT_PRODUCT_CART, product);
+  return {
+    type: DECREMENT_PRODUCT_CART,
     payload: product,
   };
 };

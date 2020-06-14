@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import { ProductItem, Store } from "../../types";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addProductCart } from "../../store/actions";
+import { incrementProductCart, decrementProductCart } from "../../store/actions";
 
 const DetailProduct = () => {
   const [product, setProduct] = useState<ProductItem>({
@@ -40,7 +40,11 @@ const DetailProduct = () => {
   }
 
   function handleAddCart() {
-    dispatch(addProductCart(product));
+    dispatch(incrementProductCart(product));
+  }
+
+  function handleRemoveCart() {
+    dispatch(decrementProductCart(product));
   }
 
   return (
@@ -85,6 +89,7 @@ const DetailProduct = () => {
         <button onClick={handleAddCart} disabled={!product.size}>
           Add Product
         </button>
+        <button onClick={handleRemoveCart}>Remove Product</button>
       </div>
     </>
   );
