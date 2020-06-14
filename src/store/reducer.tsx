@@ -2,6 +2,7 @@ import {
   SET_PRODUCTS,
   INCREMENT_PRODUCT_CART,
   DECREMENT_PRODUCT_CART,
+  REMOVE_PRODUCT_CART,
 } from "./actionTypes";
 import { Action, Store } from "../types";
 
@@ -35,7 +36,7 @@ export default (state = INITIAL_STATE, { type, payload }: Action) => {
       return { ...state, productsCart: productsAdd };
 
     case DECREMENT_PRODUCT_CART:
-      let productsRemove = state.productsCart.map((product) => {
+      let productsDecrement = state.productsCart.map((product) => {
         if (
           product.id === payload.id &&
           product.size === payload.size &&
@@ -46,6 +47,15 @@ export default (state = INITIAL_STATE, { type, payload }: Action) => {
         }
         return product;
       });
+      return { ...state, productsCart: productsDecrement };
+
+    case REMOVE_PRODUCT_CART:
+      let productsRemove = state.productsCart.filter(
+        (product) =>
+          product.id !== payload.id ||
+          (product.id === payload.id && product.size !== payload.size)
+      );
+      console.log("REMOVE2: ", productsRemove, payload);
       return { ...state, productsCart: productsRemove };
 
     default:
