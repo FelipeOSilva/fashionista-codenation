@@ -55,7 +55,6 @@ export default (state = INITIAL_STATE, { type, payload }: Action) => {
           product.id !== payload.id ||
           (product.id === payload.id && product.size !== payload.size)
       );
-      console.log("REMOVE2: ", productsRemove, payload);
       return { ...state, productsCart: productsRemove };
 
     default:
