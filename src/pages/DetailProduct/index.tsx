@@ -90,7 +90,7 @@ const DetailProduct = () => {
           ))}
         </select>
         <button onClick={handleAddCart} disabled={!product.size}>
-          Add Product
+          Adicionar ao carrinho
         </button>
       </div>
     </>

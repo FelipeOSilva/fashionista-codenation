@@ -14,10 +14,10 @@ const Header = () => {
   const [showSearch, setShowSearch] = useState(false);
   const { productsCart } = useSelector((state: Store) => state);
 
-  function handleCart() {
+  function handleShowCart() {
     setShowCart(!showCart);
   }
-  function handleSearch() {
+  function handleShowSearch() {
     setShowSearch(!showSearch);
   }
 
@@ -36,18 +36,18 @@ const Header = () => {
             <span className="header__logo">FASHIONISTA</span>
           </Link>
           <div className="header__actions">
-            <button className="action__search" onClick={handleSearch}>
+            <button className="action__search" onClick={handleShowSearch}>
               <FiSearch />
             </button>
-            <button className="action__cart" onClick={handleCart}>
+            <button className="action__cart" onClick={handleShowCart}>
               <FiShoppingBag />
               <sup className="bagde">{totalProductsCart}</sup>
             </button>
           </div>
         </div>
       </header>
-      {showCart && <Cart />}
-      {showSearch && <Search />}
+      {showCart && <Cart handleShowCart={handleShowCart} />}
+      {showSearch && <Search handleShowSearch={handleShowSearch} />}
     </>
   );
 };

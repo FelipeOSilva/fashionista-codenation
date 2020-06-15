@@ -4,9 +4,13 @@ import { Store, ProductItem } from "../../types";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import "./styles.css"
+import "./styles.css";
+import { FiArrowLeft } from "react-icons/fi";
 
-const Search = () => {
+interface Props {
+  handleShowSearch: () => void;
+}
+const Search: React.FC<Props> = ({ handleShowSearch }) => {
   const [search, setSearch] = useState("");
   const [filtered, setFiltered] = useState<ProductItem[]>([]);
   const { products } = useSelector((state: Store) => state);
@@ -15,7 +19,7 @@ const Search = () => {
     if (search === "") {
       return setFiltered([]);
     }
-
+    
     setFiltered(
       products.filter((product) =>
         product.name.toLowerCase().includes(search.toLowerCase())
@@ -29,52 +33,67 @@ const Search = () => {
 
   return (
     <div className="search">
-      <div className="seach__form">
-        <input
-          type="text"
-          className="search__form__input"
-          value={search}
-          onChange={handleSearchChange}
-        />
-      </div>
-      <div className="product__list">
-        {filtered.map((product) => (
-          <Link to={`products/${product.id}`}>
-            <div className="product__list__item" key={product.id}>
-              <figure className="product__image">
-                <img
-                  src={product.image || withoutImage}
-                  alt="Teste"
-                  width="100%"
-                />
-              </figure>
-              <div className="product__list__info">
-                <span className="product__list__name"></span>
-              </div>
-              <div className="product__list__prices">
-                <div className="product__prices">
-                  {product.on_sale ? (
-                    <>
-                      <del className="product__price product__price--from">
-                        {product.regular_price}
-                      </del>
-                      <span className="product__price product__price--to">
-                        {product.actual_price}
-                      </span>
-                    </>
-                  ) : (
-                    <span className="product__price product__price--to">
-                      {product.actual_price}
+      <header className="header">
+        <div className="container container--search">
+          <button onClick={handleShowSearch} className="header__back__button">
+            <FiArrowLeft size={22}/>
+          </button>
+          <span className="seach__header__title">Pesquisa</span>
+        </div>
+      </header>
+      <div className="search__content">
+        <div className="search__form">
+          <input
+            type="text"
+            className="search__form__input"
+            placeholder="Buscar produto por nome..."
+            value={search}
+            onChange={handleSearchChange}
+          />
+        </div>
+        {filtered.length ? (
+          <div className="product__list">
+            {filtered.map((product: ProductItem) => (
+              <Link to={`products/${product.id}`} key={product.id}>
+                <div className="product__list__item">
+                  <figure className="product__image">
+                    <img
+                      src={product.image || withoutImage}
+                      alt="Teste"
+                      width="100%"
+                    />
+                  </figure>
+                  <div className="product__list__info">
+                    <span className="product__list__name">{product.name}</span>
+                  </div>
+                  <div className="product__list__prices">
+                    <div className="product__prices">
+                      {product.on_sale ? (
+                        <>
+                          <del className="product__price product__price--from">
+                            {product.regular_price}
+                          </del>
+                          <span className="product__price product__price--to">
+                            {product.actual_price}
+                          </span>
+                        </>
+                      ) : (
+                        <span className="product__price product__price--to">
+                          {product.actual_price}
+                        </span>
+                      )}
+                    </div>
+                    <span className="product__price__installments">
+                      {product.installments}
                     </span>
-                  )}
+                  </div>
                 </div>
-                <span className="product__price__installments">
-                  {product.installments}
-                </span>
-              </div>
-            </div>
-          </Link>
-        ))}
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="search__empty">Nenhum item encontrado</div>
+        )}
       </div>
     </div>
   );

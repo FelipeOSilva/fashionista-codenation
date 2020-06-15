@@ -14,10 +14,6 @@
   align-items: center;
 }
 
-.header__actions span:first-child {
-  margin-right: 16px;
-}
-
 .header__actions {
   align-items: center;
   display: flex;
@@ -29,7 +25,7 @@
 }
 
 .action__search {
-  margin-right: 8px;
+  margin-right: 12px;
 }
 
 .action__cart {
