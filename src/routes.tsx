@@ -12,10 +12,16 @@ const Routes = () => {
   useEffect(() => {
     setProductStorage()
       .then((products) => {
-        products.map((product: ProductItem, index:number) => {
-          product.id = index + 1;
-          return product;
-        });
+        /*Adicionado o filter, pois a api estava retornando dados inválidos!*/
+        products
+          .map((product: ProductItem, index: number) => {
+            if (product.name && product.style) {
+              product.id = index + 1;
+              return product;
+            }
+            return product;
+          })
+          .filter((prod: ProductItem) => prod.id);
         dispatch(setProducts(products));
       })
       .catch((err) => {
