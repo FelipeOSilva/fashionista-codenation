@@ -3,11 +3,8 @@ import Header from "../../components/Header";
 import { ProductItem, Store } from "../../types";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import {
-  incrementProductCart,
-  decrementProductCart,
-  removeProductCart,
-} from "../../store/actions";
+import { incrementProductCart } from "../../store/actions";
+import withoutImage from "../../assets/unavaliable.png";
 
 const DetailProduct = () => {
   const [product, setProduct] = useState<ProductItem>({
@@ -47,19 +44,15 @@ const DetailProduct = () => {
     dispatch(incrementProductCart(product));
   }
 
-  function handleDecrementCart() {
-    dispatch(decrementProductCart(product));
-  }
-
-  function handleRemoveCart() {
-    dispatch(removeProductCart(product));
-  }
-
   return (
     <>
       <Header />
       <figure className="product__image">
-        <img src={product.image} alt="Teste" width="100%" />
+        <img
+          src={product.image || withoutImage}
+          alt={product.name}
+          width="100%"
+        />
       </figure>
       <div className="product__info">
         <span className="product__name">{product.name}</span>
@@ -97,8 +90,6 @@ const DetailProduct = () => {
         <button onClick={handleAddCart} disabled={!product.size}>
           Add Product
         </button>
-        <button onClick={handleDecrementCart}>Decrement Product</button>
-        <button onClick={handleRemoveCart}>Remove Product</button>
       </div>
     </>
   );
