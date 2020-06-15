@@ -4,6 +4,8 @@ import { Store, ProductItem } from "../../types";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+import "./styles.css"
+
 const Search = () => {
   const [search, setSearch] = useState("");
   const [filtered, setFiltered] = useState<ProductItem[]>([]);
@@ -26,7 +28,7 @@ const Search = () => {
   }
 
   return (
-    <>
+    <div className="search">
       <div className="seach__form">
         <input
           type="text"
@@ -74,7 +76,7 @@ const Search = () => {
           </Link>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
