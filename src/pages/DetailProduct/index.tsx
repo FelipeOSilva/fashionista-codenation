@@ -29,8 +29,10 @@ const DetailProduct = () => {
   const { id: idProduct } = useParams();
 
   useEffect(() => {
-    console.log(products[idProduct]);
-    setProduct(products[idProduct]);
+    let product = products.find((product) => product.id === Number(idProduct));
+    if (product) {
+      setProduct(product);
+    }
   }, [idProduct, products]);
 
   function handleSizeChange(event: ChangeEvent<HTMLSelectElement>) {

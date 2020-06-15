@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import withoutImage from "../../assets/unavaliable.png";
 
@@ -8,8 +8,6 @@ import Header from "../../components/Header";
 
 import { useSelector } from "react-redux";
 import { Store } from "../../types";
-import Cart from "../../components/Cart";
-import Search from "../../components/Search";
 
 const Home = () => {
   const { products } = useSelector((state: Store) => state);
@@ -20,9 +18,9 @@ const Home = () => {
 
       <main className="container">
         <ul className="products">
-          {products.map((product, index) => (
-            <li className="product__box" key={index}>
-              <Link to={`product/${index}`}>
+          {products.map((product) => (
+            <Link to={`product/${product.id}`} key={product.id}>
+              <li className="product__box">
                 <figure className="product__image">
                   <img
                     src={product.image || withoutImage}
@@ -47,14 +45,11 @@ const Home = () => {
                     </span>
                   )}
                 </div>
-              </Link>
-            </li>
+              </li>
+            </Link>
           ))}
         </ul>
       </main>
-
-      <Cart />
-      <Search />
       <footer></footer>
     </>
   );
