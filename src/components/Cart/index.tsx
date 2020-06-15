@@ -7,6 +7,9 @@ import {
   decrementProductCart,
   removeProductCart,
 } from "../../store/actions";
+import { FiMinusSquare, FiPlusSquare, FiTrash2 } from "react-icons/fi";
+
+import "./styles.css"
 
 const Cart = () => {
   const { productsCart } = useSelector((state: Store) => state);
@@ -66,18 +69,18 @@ const Cart = () => {
                 <div className="product__cart__controll">
                   <div className="product__list__quantity">
                     <button onClick={() => handleDecrementCart(product)}>
-                      -
+                      <FiMinusSquare size={24} />
                     </button>
                     <span>{product.qtdCart}</span>
                     <button onClick={() => handleIncrementCart(product)}>
-                      +
+                      <FiPlusSquare size={24} />
                     </button>
                   </div>
                   <button
                     className="product__remove__cart"
                     onClick={() => handleRemoveCart(product)}
                   >
-                    X
+                    <FiTrash2 size={24} color="#d9534f" />
                   </button>
                 </div>
               </div>
