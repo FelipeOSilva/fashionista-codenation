@@ -41,7 +41,7 @@ const Header = () => {
             </button>
             <button className="action__cart" onClick={handleShowCart}>
               <FiShoppingBag />
-              <sup className="bagde">{totalProductsCart}</sup>
+              <sup className="bagde__header">{totalProductsCart}</sup>
             </button>
           </div>
         </div>

@@ -21,7 +21,12 @@ const Home = () => {
           {products.map((product) => (
             <Link to={`product/${product.id}`} key={product.id}>
               <li className="product__box">
-                <figure className="product__image">
+                <figure className="product__image__home">
+                  {product.on_sale && (
+                    <span className="badge__image__discount">
+                      {product.discount_percentage}
+                    </span>
+                  )}
                   <img
                     src={product.image || withoutImage}
                     alt="Teste"

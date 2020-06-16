@@ -19,7 +19,7 @@ const Search: React.FC<Props> = ({ handleShowSearch }) => {
     if (search === "") {
       return setFiltered([]);
     }
-    
+
     setFiltered(
       products.filter((product) =>
         product.name.toLowerCase().includes(search.toLowerCase())
@@ -33,12 +33,12 @@ const Search: React.FC<Props> = ({ handleShowSearch }) => {
 
   return (
     <div className="search">
-      <header className="header">
+      <header className="header__search">
         <div className="container container--search">
           <button onClick={handleShowSearch} className="header__back__button">
-            <FiArrowLeft size={22}/>
+            <FiArrowLeft size={22} />
           </button>
-          <span className="seach__header__title">Pesquisa</span>
+          <span className="search__header__title">Pesquisa</span>
         </div>
       </header>
       <div className="search__content">
@@ -54,34 +54,23 @@ const Search: React.FC<Props> = ({ handleShowSearch }) => {
         {filtered.length ? (
           <div className="product__list">
             {filtered.map((product: ProductItem) => (
-              <Link to={`products/${product.id}`} key={product.id}>
+              <Link to={`/product/${product.id}`} key={product.id} onClick={handleShowSearch}>
                 <div className="product__list__item">
-                  <figure className="product__image">
+                  <figure className="product__image__search">
                     <img
                       src={product.image || withoutImage}
                       alt="Teste"
                       width="100%"
                     />
                   </figure>
-                  <div className="product__list__info">
+                  <div className="product__list__info__search">
                     <span className="product__list__name">{product.name}</span>
                   </div>
                   <div className="product__list__prices">
                     <div className="product__prices">
-                      {product.on_sale ? (
-                        <>
-                          <del className="product__price product__price--from">
-                            {product.regular_price}
-                          </del>
-                          <span className="product__price product__price--to">
-                            {product.actual_price}
-                          </span>
-                        </>
-                      ) : (
-                        <span className="product__price product__price--to">
-                          {product.actual_price}
-                        </span>
-                      )}
+                      <span className="product__price product__price--to">
+                        {product.actual_price}
+                      </span>
                     </div>
                     <span className="product__price__installments">
                       {product.installments}

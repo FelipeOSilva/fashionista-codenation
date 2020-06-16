@@ -1,0 +1,35 @@
+.product__name__detail {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 12px 0;
+}
+.product__price__detail{
+  font-size: 1.6rem;
+}
+select.select__size {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  flex: 1;
+  background: #cbcbd2;
+  border-radius: 4px;
+  border: 0;
+  padding: 12px 24px;
+  color: #000;
+  font-size: 1.6rem;
+  margin: 12px 0;
+}
+
+.button__add__cart{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  flex: 1;
+  background: #000;
+  border-radius: 4px;
+  border: 0;
+  padding: 12px 24px;
+  color: #fff;
+  font-size: 1.6rem;
+  margin: 12px 0;
+}
