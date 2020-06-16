@@ -1,7 +1,6 @@
-.header__search{
+.header__search {
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
   background: #fff;
   padding: 12px 0px;
@@ -78,7 +77,25 @@
   width: 25%;
   padding-right: 1.6rem;
 }
-.product__list__info__search{
+.product__list__info__search {
   width: 45%;
   font-weight: bold;
+}
+
+@media only screen and (min-width: 1024px) {
+  .search__box {
+    position: fixed;
+    background: #0009;
+    width: 100%;
+    z-index: 3;
+    top: 0;
+    height: 100vh;
+  }
+  .header__search {
+    width: 40%;
+  }
+  .search {
+    width: 40%;
+    right: 0;
+  }
 }

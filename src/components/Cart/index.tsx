@@ -50,6 +50,7 @@ const Cart: React.FC<Props> = ({ handleShowCart }) => {
   }
 
   return (
+    <div className="cart__box">
     <div className="cart">
       <header className="header__cart">
         <div className="container container--cart">
@@ -123,6 +124,7 @@ const Cart: React.FC<Props> = ({ handleShowCart }) => {
         )}
       </div>
       <div className="cart__subtotal">Subtotal - R$ {subtotal.toFixed(2)}</div>
+    </div>
     </div>
   );
 };

@@ -32,57 +32,65 @@ const Search: React.FC<Props> = ({ handleShowSearch }) => {
   }
 
   return (
-    <div className="search">
-      <header className="header__search">
-        <div className="container container--search">
-          <button onClick={handleShowSearch} className="header__back__button">
-            <FiArrowLeft size={22} />
-          </button>
-          <span className="search__header__title">Pesquisa</span>
-        </div>
-      </header>
-      <div className="search__content">
-        <div className="search__form">
-          <input
-            type="text"
-            className="search__form__input"
-            placeholder="Buscar produto por nome..."
-            value={search}
-            onChange={handleSearchChange}
-          />
-        </div>
-        {filtered.length ? (
-          <div className="product__list">
-            {filtered.map((product: ProductItem) => (
-              <Link to={`/product/${product.id}`} key={product.id} onClick={handleShowSearch}>
-                <div className="product__list__item">
-                  <figure className="product__image__search">
-                    <img
-                      src={product.image || withoutImage}
-                      alt="Teste"
-                      width="100%"
-                    />
-                  </figure>
-                  <div className="product__list__info__search">
-                    <span className="product__list__name">{product.name}</span>
-                  </div>
-                  <div className="product__list__prices">
-                    <div className="product__prices">
-                      <span className="product__price product__price--to">
-                        {product.actual_price}
+    <div className="search__box">
+      <div className="search">
+        <header className="header__search">
+          <div className="container container--search">
+            <button onClick={handleShowSearch} className="header__back__button">
+              <FiArrowLeft size={22} />
+            </button>
+            <span className="search__header__title">Pesquisa</span>
+          </div>
+        </header>
+        <div className="search__content">
+          <div className="search__form">
+            <input
+              type="text"
+              className="search__form__input"
+              placeholder="Buscar produto por nome..."
+              value={search}
+              onChange={handleSearchChange}
+            />
+          </div>
+          {filtered.length ? (
+            <div className="product__list">
+              {filtered.map((product: ProductItem) => (
+                <Link
+                  to={`/product/${product.id}`}
+                  key={product.id}
+                  onClick={handleShowSearch}
+                >
+                  <div className="product__list__item">
+                    <figure className="product__image__search">
+                      <img
+                        src={product.image || withoutImage}
+                        alt="Teste"
+                        width="100%"
+                      />
+                    </figure>
+                    <div className="product__list__info__search">
+                      <span className="product__list__name">
+                        {product.name}
                       </span>
                     </div>
-                    <span className="product__price__installments">
-                      {product.installments}
-                    </span>
+                    <div className="product__list__prices">
+                      <div className="product__prices">
+                        <span className="product__price product__price--to">
+                          {product.actual_price}
+                        </span>
+                      </div>
+                      <span className="product__price__installments">
+                        {product.installments}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        ) : (
-          <div className="search__empty">Nenhum item encontrado</div>
-        )}
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="search__empty">Nenhum item encontrado</div>
+          )}
+        </div>
       </div>
     </div>
   );

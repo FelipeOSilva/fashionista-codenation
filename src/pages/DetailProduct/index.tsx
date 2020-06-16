@@ -51,7 +51,7 @@ const DetailProduct = () => {
   return (
     <>
       <Header />
-      <div className="product__detail">
+      <div className="product__detail container">
         <figure className="product__image">
           <img
             src={product.image || withoutImage}
