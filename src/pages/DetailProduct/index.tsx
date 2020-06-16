@@ -59,7 +59,7 @@ const DetailProduct = () => {
             width="100%"
           />
         </figure>
-        <div className="product__info container">
+        <div className="product__info">
           <span className="product__name__detail">{product.name}</span>
           {product.on_sale ? (
             <div>
